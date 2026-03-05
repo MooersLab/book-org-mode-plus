@@ -1,6 +1,6 @@
-* Enhanced Book Template in Org-mode Using the svmono Class (version: 2.0.0)
+* Enhanced Book Template in Org-mode Using the svmono Class
 
-The prior version should have been numbered 1.0.0. This version introduces breaking changes with the use of org headlines to ease section folding. It provides a more native org-mode experience.
+This version introduces breaking changes with the use of org headlines to ease section folding. It provides a more native org-mode experience.
 
 ** What is this for?
 
@@ -21,7 +21,7 @@ Just change the class name in the Preamble drawer and follow the directions belo
 
 ** Why Org-mode?
 
-*** Easy table assemby
+*** Easy table assembly
 Org-mode provides excellent support for assembling tables.
 There is no peer competitor for the incredible flexibility in assembling tables.
 The tables self-adjust by hitting *shift-tab* as you add new columns and rows.
@@ -32,7 +32,7 @@ Tables in org-mode are like mini Excel spreadsheets.
 Another key feature of Org-Mode is its support for interactive programming inside the org file.
 This is an enhanced form of literate programming.
 You can turn your code blocks into executable code that generates plots.
-This is useful in projects where there is a need to update tables and figures as new data are collected.
+This is useful for projects that need to update tables and figures as new data is collected.
 
 *** Thin wrapper around LaTeX
 Once you start thinking of Org-mode as a thin wrapper around LaTeX, using it becomes natural.
@@ -124,7 +124,7 @@ Parts are now declared with =#+LATEX: \part{The Basics}= in =main.org= rather th
 - Minted and listings code styling with background colours.
 - Symbol list with units.
 - Epigraph collection.
-- Writing log template with word count charting.
+- Writing a log template with a word count chart.
 - Narrow margins to avoid wasting paper.
 
 ** Directory structure
@@ -291,12 +291,7 @@ Consider using the Emacs package =magit= for automatic commits.
 #+ATTR_LATEX: :booktabs t
 | Version | Changes                                                                                                                | Date              |
 |---------+------------------------------------------------------------------------------------------------------------------------+-------------------|
-|   0.1   | Initiate project. Added badges, funding, and this update table.                                                        | 2024 September 29 |
-|   0.1.1 | Added installation instructions.                                                                                       | 2024 September 30 |
-|   0.1.2 | Minor edits to the README.md file. Add several explanatory paragraphs.                                                 | 2025 May 11       |
-|   0.1.3 | Renamed main file name from 0AAAmain.org to main.org for simplicity. Added init.el configuration.                      | 2025 May 12       |
-|   0.1.4 | Added push function section with yasnippet snippet.                                                                    | 2025 May 12       |
-|   2.0.0 | Enhanced version reconciled with bookInLaTeX. Org-mode idiomatic chapters, expanded preamble, writing log, boilerplate. | 2026 March 4      |
+|   0.1.0   | Initiate project. Added badges, funding, and this update table.                                                        | 2026 March 5 |
 
 ** Sources of funding
 
