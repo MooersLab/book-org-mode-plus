@@ -1,0 +1,263 @@
+\chapter{Template}
+\index[main]{Template}
+\label{ch:template}
+\epigraph{In God we trust. All others must bring data.}{W. Edwards Deming}
+
+** Introduction
+\index[main]{Introduction!Template}
+\label{sec:template-intro}
+
+Replace this paragraph with the introduction to the chapter.
+State the chapter's purpose and what the reader will learn.
+
+** Topic 1
+\index[main]{topic 1}
+\label{sec:topic-1}
+
+Replace this text with the first major topic.
+
+*** Subtopic 1.1
+\label{sec:subtopic-1-1}
+
+Replace this text with the first subtopic under Topic 1.
+
+** To Be Done
+\label{sec:template-tbd}
+
+- [ ] Item 1
+- [ ] Item 2
+- [ ] Item 3
+
+
+** Boilerplate examples                                            :noexport:
+:BOILERPLATE:
+
+The examples below are commented out with the =:noexport:= tag.
+Copy and paste the examples you need into the exported sections above.
+Edit the labels, captions, and content to suit your chapter.
+
+*** Minted code block (no line numbers)
+
+#+begin_export latex
+\begin{code}{}
+\label{lst:example-no-lines}
+\index[main]{code example!no line numbers}
+\caption{Description of this code listing.}
+\begin{minted}[frame=lines,
+              framerule=2pt,
+              linenos=false,
+              xleftmargin=\parindent,
+              breaklines]{python}
+import numpy as np
+print("Hello, world!")
+\end{minted}
+\end{code}
+#+end_export
+
+*** Minted code block (with line numbers)
+
+#+begin_export latex
+\begin{code}{}
+\label{lst:example-with-lines}
+\index[main]{code example!with line numbers}
+\caption{Description of this code listing.}
+\begin{minted}[frame=lines,
+              framerule=2pt,
+              linenos=true,
+              xleftmargin=\parindent,
+              breaklines]{python}
+import numpy as np
+x = np.linspace(0, 2 * np.pi, 100)
+y = np.sin(x)
+\end{minted}
+\end{code}
+#+end_export
+
+*** Minted code block (bash)
+
+#+begin_export latex
+\begin{minted}{bash}
+echo "Hello from bash"
+ls -la
+\end{minted}
+#+end_export
+
+*** Minted code block (console session)
+
+#+begin_export latex
+\begin{code}{}
+\label{lst:example-console}
+\index[main]{code example!console session}
+\caption{Example console session.}
+\begin{minted}[frame=lines,
+              framerule=2pt,
+              linenos=false,
+              xleftmargin=\parindent,
+              breaklines]{jlcon}
+julia> using Pkg
+julia> pkg"activate ."
+ Activating environment at `~/ExampleProject/Project.toml`
+\end{minted}
+\end{code}
+#+end_export
+
+*** Minted code block (inputminted from external file)
+
+#+begin_export latex
+\begin{code}{}
+\label{lst:example-inputminted}
+\index[main]{code example!inputminted}
+\caption{Code imported from an external file.}
+\inputminted[frame=lines,
+              framerule=2pt,
+              linenos=false,
+              xleftmargin=\parindent,
+              breaklines]{python}{./Contents/codeListings/example.py}
+\end{code}
+#+end_export
+
+*** Org-mode source block (literate programming)
+
+#+begin_src python :results output :exports both
+import numpy as np
+x = np.array([1, 2, 3])
+print(f"Sum: {np.sum(x)}")
+#+end_src
+
+*** Equation (numbered)
+
+#+begin_export latex
+\begin{equation}\label{eq:example-numbered}
+  E = mc^{2}
+\end{equation}
+#+end_export
+
+*** Equation (align, unnumbered)
+
+#+begin_export latex
+\begin{align*}\label{eq:example-align}
+  y &= mx + b \\
+  z &= \alpha x^{2} + \beta x + \gamma
+\end{align*}
+#+end_export
+
+*** Equation (split inside equation)
+
+#+begin_export latex
+\begin{equation}\label{eq:example-split}
+\begin{split}
+  A &= B + C \\
+    &= D + E
+\end{split}
+\end{equation}
+#+end_export
+
+*** Figure (org-mode syntax)
+
+#+CAPTION: Description of the figure. \label{fig:example-org}
+#+NAME: fig:example-org
+#+ATTR_LATEX: :width 0.8\textwidth :placement [htbp]
+[[file:./Contents/figs/placeholder.png]]
+
+*** Figure (LaTeX syntax for finer control)
+
+#+begin_export latex
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[scale=0.5]{./Contents/figs/placeholder.png}
+  \caption{Description of the figure. \label{fig:example-latex}}
+\end{figure}
+#+end_export
+
+*** Table (org-mode syntax with booktabs)
+
+#+CAPTION: Description of the table. \label{tab:example-org}
+#+ATTR_LATEX: :booktabs t :align lcc
+| Item   | Value 1 | Value 2 |
+|--------+---------+---------|
+| Alpha  |    1.23 |    4.56 |
+| Beta   |    7.89 |    0.12 |
+| Gamma  |    3.45 |    6.78 |
+
+*** Table (LaTeX syntax with booktabs)
+
+#+begin_export latex
+\begin{table}[htbp]
+  \caption{Description of the table. \label{tab:example-latex}}
+  \begin{center}
+    \begin{tabular}{lcc}
+      \toprule
+      LongHeader1 & Value1 & Value2 \\
+      \multicolumn{1}{c}{(unit1)} &
+      \multicolumn{1}{c}{(unit2)} &
+      \multicolumn{1}{c}{(unit3)} \\ \midrule
+      Item1 & X1 & Y1 \\
+      Item2 & X2 & Y2 \\
+      Item3 & X3 & Y3 \\ \bottomrule
+    \end{tabular}
+  \end{center}
+\end{table}
+#+end_export
+
+*** Boxy environment (titled highlight box)
+
+#+begin_export latex
+\begin{boxy}{\textbf{Key Concept: Central Limit Theorem}}
+The distribution of sample means approaches a normal distribution
+as the sample size increases, regardless of the population's distribution.
+\end{boxy}
+#+end_export
+
+*** Statistical model float
+
+#+begin_export latex
+\begin{statsmodel}[H]
+  \smcap{Linear regression model for predicting Y from X.}
+  \begin{equation}
+    Y_{i} = \beta_{0} + \beta_{1} X_{i} + \epsilon_{i}
+  \end{equation}
+  where $\epsilon_{i} \sim \mathcal{N}(0, \sigma^{2})$.
+\end{statsmodel}
+#+end_export
+
+*** Checklist float
+
+#+begin_export latex
+\begin{checklist}[H]
+  \caption{Pre-submission checklist. \label{cl:example}}
+  \begin{itemize}
+    \item[$\square$] All figures have captions
+    \item[$\square$] All tables have captions
+    \item[$\square$] Bibliography compiles without errors
+    \item[$\square$] Index entries are complete
+  \end{itemize}
+\end{checklist}
+#+end_export
+
+*** Exercises section (unnumbered)
+
+#+begin_export latex
+\section*{Exercises}
+\begin{prob}
+\label{problem:example}
+Describe the problem here.
+\end{prob}
+#+end_export
+
+*** Epigraph at the top of a section
+
+#+begin_export latex
+\epigraph{The purpose of computing is insight, not numbers.}{Richard Hamming}
+#+end_export
+
+*** Itemize and enumerate
+
+- First item in an unordered list
+- Second item in an unordered list
+- Third item in an unordered list
+
+1. First item in an ordered list
+2. Second item in an ordered list
+3. Third item in an ordered list
+
+:END:

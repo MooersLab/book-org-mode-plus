@@ -1,0 +1,10 @@
+#+LATEX: \chapter{Chapter 2:}
+#+LATEX: \label{ch:chapter2}
+\index{Emacs!built-in features}
+\index{Emacs!built-in packages}
+\index{discovery}
+
+\epigraph{Science is what we understand well enough to explain to a computer. Art is everything else we do.}{Donald Knuth}
+
+
+** Introduction

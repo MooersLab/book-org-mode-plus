@@ -1,0 +1,9 @@
+
+\epigraph{Not afraid of math. It just has a terrible ROI compared to many things that I don't have time for either.}{Henrik Vendelbo}
+
+
+\index{preface}
+\index{scientific workflows}
+\index{Emacs!AI-assisted}
+
+This book is for 

@@ -1,0 +1,14 @@
+#+LATEX: \chapter{Chapter 4}
+#+LATEX: \label{ch:Chapter4}
+
+\index[main]{Template}
+
+\epigraph{In God we trust. All others must bring data.}{W. Edwards Deming}
+
+** Introduction
+\index[main]{Introduction!Template}
+\label{sec:template-intro}
+
+Replace this paragraph with the introduction to the chapter.
+State the chapter's purpose and what the reader will learn.
+

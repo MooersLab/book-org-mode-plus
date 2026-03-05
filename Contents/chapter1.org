@@ -1,0 +1,9 @@
+#+LATEX: \chapter{Chapter 1:}
+\index[main]{Introduction}
+\label{ch:introduction}
+\epigraph{In God we trust. All others must bring data.}{W. Edwards Deming}
+\index{prompt engineering}
+\index{Claude!effective prompting}
+\index{context management}
+
+** Introduction

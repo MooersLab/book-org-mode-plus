@@ -1,0 +1,15 @@
+
+
+* Appendix B Title
+\index[main]{Appendix B}
+\label{ch:appendixB}
+
+** Introduction
+\label{sec:appB-intro}
+
+Replace this text with the introduction to Appendix B.
+
+** Section 1
+\label{sec:appB-sec1}
+
+Replace this text with the content of Section 1.

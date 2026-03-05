@@ -1,0 +1,22 @@
+
+* Appendix A Title
+\index[main]{Appendix A}
+\label{ch:appendixA}
+
+** Introduction
+\label{sec:appA-intro}
+
+Replace this text with the introduction to Appendix A.
+
+** Section 1
+\label{sec:appA-sec1}
+
+Replace this text with the content of Section 1.
+
+#+CAPTION: Example table for Appendix A. \label{tab:appA-example}
+#+ATTR_LATEX: :booktabs t
+| Item  | Value |
+|-------+-------|
+| One   |     1 |
+| Two   |     2 |
+| Three |     3 |
