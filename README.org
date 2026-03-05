@@ -149,9 +149,14 @@ bookInOrg-enhanced/
 |   +-- ChapterTemplate.org   Chapter template with boilerplate
 |   +-- chapter1.org          Chapter 1
 |   +-- chapter2.org          Chapter 2
+|   +-- chapter3.org          Chapter 3
+|   +-- chapter4.org          Chapter 4
+|   +-- chapter5.org          Chapter 5
+|   +-- chapter6.org          Chapter 6
+|   +-- chapter7.org          Chapter 7
+|   +-- chapter8.org          Chapter 8
 |   +-- appendixA.org         Appendix A
 |   +-- appendixB.org         Appendix B
-|   +-- appendixC.org         Appendix C
 |   +-- figs/                 Figure image files
 |   +-- codeListings/         External code files for inputminted
 +-- AnnotatedBibliography/
