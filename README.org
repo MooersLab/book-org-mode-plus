@@ -256,7 +256,6 @@ Chapters use org-mode headings that map to LaTeX sectioning as follows:
 #+ATTR_LATEX: :booktabs t
 | Org heading level | LaTeX equivalent  | Usage                   |
 |-------------------+-------------------+-------------------------|
-| =*=               | =\chapter{}=      | Chapter title           |
 | =**=              | =\section{}=      | Major section           |
 | =***=             | =\subsection{}=   | Subsection              |
 | =****=            | =\subsubsection{}= | Sub-subsection (rare)   |
