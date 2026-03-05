@@ -1,0 +1,333 @@
+#+TITLE: Scientific Workflows
+#+AUTHOR: Blaine Mooers
+#+DATE: 2026-03-05
+#+Options: data:nil toc:nil \n:nil num:nil
+#+STARTUP: overview
+#+STARTUP: noindent
+#+cite_export: natbib cell
+#+bibliography: ~/Documents/global.bib
+:PREAMBLE:
+#+LATEX_CLASS: svmono
+#+LATEX_CLASS_OPTIONS: [openany,envcountsame,envcountchap]
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Encoding and language
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage[english]{babel}
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Page layout
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage[letterpaper, total={7in, 9in}]{geometry}
+#+LATEX_HEADER: \usepackage[parfill]{parskip}
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Math and physics
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{amssymb}
+#+LATEX_HEADER: \usepackage{physics}
+#+LATEX_HEADER: \usepackage{dsfont}
+#+LATEX_HEADER: \usepackage{mathrsfs}
+#+LATEX_HEADER: \usepackage{wasysym}
+#+LATEX_HEADER: \usepackage{siunitx}
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Typography, floats, and tables
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage{rotating}
+#+LATEX_HEADER: \usepackage{array}
+#+LATEX_HEADER: \usepackage{booktabs}
+#+LATEX_HEADER: \usepackage{multicol}
+#+LATEX_HEADER: \usepackage{textcomp}
+#+LATEX_HEADER: \usepackage{gensymb}
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \floatstyle{plain}
+#+LATEX_HEADER: \usepackage{caption}
+#+LATEX_HEADER: \usepackage[caption=false]{subfig}
+#+LATEX_HEADER: \usepackage{mdframed}
+#+LATEX_HEADER: \usepackage{verbatim}
+#+LATEX_HEADER: \usepackage[normalem]{ulem}
+#+LATEX_HEADER: \usepackage{scrextend}
+#+LATEX_HEADER: \usepackage{filecontents}
+#+LATEX_HEADER: \usepackage[bottom]{footmisc}
+#+LATEX_HEADER: \usepackage{datetime}
+#+LATEX_HEADER: \usepackage{appendix}
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Graphics and title-page image
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage[cc]{titlepic}
+#+LATEX_HEADER: \usepackage{graphicx}
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Hyperlinks and URLs
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage[luatex,plainpages=false]{hyperref}
+#+LATEX_HEADER: \hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=cyan, filecolor=magenta, pdfborder={0 0 0}}
+#+LATEX_HEADER: \usepackage{url}
+#+LATEX_HEADER: \urlstyle{sf}
+#+LATEX_HEADER: \usepackage{underscore}
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Bibliography (natbib with cell style)
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage[authoryear,round]{natbib}
+#+LATEX_HEADER: \bibliographystyle{cell}
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Indices (subject, author, writing prompt)
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage{imakeidx}
+#+LATEX_HEADER: \makeindex[name=main,title=Subject Index,columns=2]
+#+LATEX_HEADER: \makeindex[name=authors,title=Author Index,columns=2]
+#+LATEX_HEADER: \makeindex[name=prompt,title=Writing Prompt Index,columns=1]
+
+#+LATEX_HEADER: % Author index via authorindex package (works with \cite keys)
+#+LATEX_HEADER: \RequirePackage{authorindex}
+#+LATEX_HEADER: \def\theaipage{\string\hyperpage{\thepage}}
+#+LATEX_HEADER: \newcommand{\listofauthorsname}{List of Authors}%
+#+LATEX_HEADER: \newcommand{\listofauthors}{%
+#+LATEX_HEADER:   \chapter*{\listofauthorsname}%
+#+LATEX_HEADER:   \phantomsection%
+#+LATEX_HEADER:   \addcontentsline{toc}{chapter}{\listofauthorsname}%
+#+LATEX_HEADER:   \noindent%
+#+LATEX_HEADER:   \printauthorindex%
+#+LATEX_HEADER: }
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Glossaries, acronyms, and symbol lists
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage{morewrites}
+#+LATEX_HEADER: \usepackage[acronym,toc,smallcaps]{glossaries}
+#+LATEX_HEADER: \setlength{\glsdescwidth}{15cm}
+#+LATEX_HEADER: \loadglsentries[\acronymtype]{\jobname-acronyms}
+#+LATEX_HEADER: \loadglsentries{\jobname-glossary}
+#+LATEX_HEADER: \makeglossaries
+#+LATEX_HEADER: \glsaddall
+
+#+LATEX_HEADER: % Symbol list style (three-column: sign, description, unit)
+#+LATEX_HEADER: \newglossarystyle{symbunitlong}{%
+#+LATEX_HEADER:   \setglossarystyle{long3col}%
+#+LATEX_HEADER:   \renewenvironment{theglossary}{%
+#+LATEX_HEADER:     \begin{longtable}{lp{0.6\glsdescwidth}>{\centering\arraybackslash}p{2cm}}}%
+#+LATEX_HEADER:     {\end{longtable}}%
+#+LATEX_HEADER:   \renewcommand*{\glossaryheader}{%
+#+LATEX_HEADER:     \bfseries Sign & \bfseries Description & \bfseries Unit \\
+#+LATEX_HEADER:     \hline \endhead}
+#+LATEX_HEADER:   \renewcommand*{\glossentry}[2]{%
+#+LATEX_HEADER:     \glstarget{##1}{\glossentryname{##1}} %
+#+LATEX_HEADER:     & \glossentrydesc{##1}%
+#+LATEX_HEADER:     & \glsunit{##1} \tabularnewline}
+#+LATEX_HEADER: }
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Custom float environments
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \newfloat{statsmodel}{H}{statsm}[chapter]
+#+LATEX_HEADER: \floatname{statsmodel}{Statistical Model}
+#+LATEX_HEADER: \newfloat{email}{H}{email}[chapter]
+#+LATEX_HEADER: \floatname{email}{Email}
+#+LATEX_HEADER: \newfloat{listeq}{H}{listeq}[chapter]
+#+LATEX_HEADER: \floatname{listeq}{Equation List}
+#+LATEX_HEADER: \newfloat{checklist}{H}{checklist}[chapter]
+#+LATEX_HEADER: \floatname{checklist}{Checklist}
+#+LATEX_HEADER: \DeclareCaptionType{equ}[][]
+
+#+LATEX_HEADER: % List of Statistical Models
+#+LATEX_HEADER: \newcounter{statmodel}
+#+LATEX_HEADER: \newcommand\liststatmodelname{List of Statistical Models}
+#+LATEX_HEADER: \newcommand\smcap[1]{%
+#+LATEX_HEADER:    \stepcounter{statmodel}\addtocontents{sm}{\protect\makebox[2em][l]{\thestatmodel}#1}%
+#+LATEX_HEADER:    \addtocontents{sm}{\vskip7pt\noindent}}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newcommand{\listofstatmodels}{%
+#+LATEX_HEADER:   \chapter*{\liststatmodelname}\@starttoc{sm}
+#+LATEX_HEADER:   \clearpage%
+#+LATEX_HEADER:   \phantomsection%
+#+LATEX_HEADER:   \addcontentsline{toc}{chapter}{\liststatmodelname}%
+#+LATEX_HEADER:   \noindent%
+#+LATEX_HEADER: }%
+#+LATEX_HEADER: \makeatother
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Code listings (minted + listings)
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \definecolor{codegreen}{rgb}{0,0.6,0}
+#+LATEX_HEADER: \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+#+LATEX_HEADER: \definecolor{codepurple}{rgb}{0.58,0,0.82}
+#+LATEX_HEADER: \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+#+LATEX_HEADER: \definecolor{codebg1}{rgb}{0.96,0.96,0.96}
+#+LATEX_HEADER: \definecolor{codebg2}{rgb}{0.98,0.98,0.98}
+
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \newenvironment{code}{\captionsetup{type=listing}}{}
+#+LATEX_HEADER: \usemintedstyle{default}
+#+LATEX_HEADER: \newminted{python}{bgcolor=codebg1,linenos=true,frame=lines,numbersep=5pt,fontsize=\footnotesize}
+#+LATEX_HEADER: \newminted{bash}{bgcolor=codebg2,linenos=true,frame=lines,numbersep=5pt,fontsize=\footnotesize}
+
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \renewcommand{\lstlistingname}{Listing}
+#+LATEX_HEADER: \renewcommand{\lstlistlistingname}{List of Listings}
+#+LATEX_HEADER: \lstset{
+#+LATEX_HEADER:   basicstyle=\ttfamily\small,
+#+LATEX_HEADER:   frame=single,
+#+LATEX_HEADER:   breaklines=true,
+#+LATEX_HEADER:   numbers=left,
+#+LATEX_HEADER:   numberstyle=\tiny,
+#+LATEX_HEADER:   captionpos=b,
+#+LATEX_HEADER:   language=Python,
+#+LATEX_HEADER:   keywordstyle=\color{blue},
+#+LATEX_HEADER:   commentstyle=\color{codegreen},
+#+LATEX_HEADER:   stringstyle=\color{codepurple}
+#+LATEX_HEADER: }
+
+#+LATEX_HEADER: % Listing counter tied to section
+#+LATEX_HEADER: \usepackage{chngcntr}
+#+LATEX_HEADER: \counterwithin{listing}{section}
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Epigraphs (variable-width, right-flushed)
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage{epigraph,varwidth}
+#+LATEX_HEADER: \usepackage{epipart}
+#+LATEX_HEADER: \renewcommand{\epigraphsize}{\small}
+#+LATEX_HEADER: \setlength{\epigraphwidth}{0.6\textwidth}
+#+LATEX_HEADER: \renewcommand{\textflush}{flushright}
+#+LATEX_HEADER: \renewcommand{\sourceflush}{flushright}
+#+LATEX_HEADER: \newcommand{\epitextfont}{\itshape}
+#+LATEX_HEADER: \newcommand{\episourcefont}{\scshape}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newsavebox{\epi@textbox}
+#+LATEX_HEADER: \newsavebox{\epi@sourcebox}
+#+LATEX_HEADER: \newlength\epi@finalwidth
+#+LATEX_HEADER: \renewcommand{\epigraph}[2]{%
+#+LATEX_HEADER:   \vspace{\beforeepigraphskip}
+#+LATEX_HEADER:   {\epigraphsize\begin{\epigraphflush}
+#+LATEX_HEADER:    \epi@finalwidth=\z@
+#+LATEX_HEADER:    \sbox\epi@textbox{%
+#+LATEX_HEADER:      \varwidth{\epigraphwidth}
+#+LATEX_HEADER:      \begin{\textflush}\epitextfont#1\end{\textflush}
+#+LATEX_HEADER:      \endvarwidth
+#+LATEX_HEADER:    }%
+#+LATEX_HEADER:    \epi@finalwidth=\wd\epi@textbox
+#+LATEX_HEADER:    \sbox\epi@sourcebox{%
+#+LATEX_HEADER:      \varwidth{\epigraphwidth}
+#+LATEX_HEADER:      \begin{\sourceflush}\episourcefont#2\end{\sourceflush}%
+#+LATEX_HEADER:      \endvarwidth
+#+LATEX_HEADER:    }%
+#+LATEX_HEADER:    \ifdim\wd\epi@sourcebox>\epi@finalwidth
+#+LATEX_HEADER:      \epi@finalwidth=\wd\epi@sourcebox
+#+LATEX_HEADER:    \fi
+#+LATEX_HEADER:    \leavevmode\vbox{
+#+LATEX_HEADER:      \hb@xt@\epi@finalwidth{\hfil\box\epi@textbox}
+#+LATEX_HEADER:      \vskip1.75ex
+#+LATEX_HEADER:      \hrule height \epigraphrule
+#+LATEX_HEADER:      \vskip.75ex
+#+LATEX_HEADER:      \hb@xt@\epi@finalwidth{\hfil\box\epi@sourcebox}
+#+LATEX_HEADER:    }%
+#+LATEX_HEADER:    \end{\epigraphflush}
+#+LATEX_HEADER:    \vspace{\afterepigraphskip}}}
+#+LATEX_HEADER: \makeatother
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Chapter title colour
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \usepackage{sectsty}
+#+LATEX_HEADER: \chapterfont{\color{Maroon}}
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Boxy environment (titled box for highlights)
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \newenvironment{boxy}[1]
+#+LATEX_HEADER:     {\begin{center}
+#+LATEX_HEADER:     #1\\[1ex]
+#+LATEX_HEADER:     \begin{tabular}{|p{0.9\textwidth}|}
+#+LATEX_HEADER:     \hline\\
+#+LATEX_HEADER:     }
+#+LATEX_HEADER:     {
+#+LATEX_HEADER:     \\\\\hline
+#+LATEX_HEADER:     \end{tabular}
+#+LATEX_HEADER:     \end{center}
+#+LATEX_HEADER:     }
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % Unicode math (load last among math packages)
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \RequirePackage{unicode-math}
+
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: % KOMA-script labelling font
+#+LATEX_HEADER: % ============================================================
+#+LATEX_HEADER: \addtokomafont{labelinglabel}{\sffamily\bfseries}
+:END:
+
+
+#+LATEX: % ============================================================
+#+LATEX: % FRONT MATTER
+#+LATEX: % ============================================================
+#+LATEX: \newpage
+#+LATEX: \frontmatter
+
+#+LATEX: \preface
+#+INCLUDE: "./Contents/Preface.org"
+
+#+LATEX: \tableofcontents
+#+LATEX: \printglossary[type=acronym,title=List of Acronyms]
+#+LATEX: \listoffigures
+#+LATEX: \listoftables
+#+LATEX: \lstlistoflistings
+
+#+LATEX: % ============================================================
+#+LATEX: % MAIN MATTER
+#+LATEX: % ============================================================
+#+LATEX: \setcounter{chapter}{0}
+#+LATEX: \mainmatter
+
+#+LATEX: \part{The Basics}
+#+LATEX: \label{part:basics}
+#+LATEX: \index{The Basics}
+
+#+INCLUDE: "./Contents/chapter1.org"
+#+INCLUDE: "./Contents/chapter2.org"
+#+INCLUDE: "./Contents/chapter3.org"
+#+INCLUDE: "./Contents/chapter4.org"
+#+INCLUDE: "./Contents/chapter5.org"
+#+INCLUDE: "./Contents/chapter6.org"
+#+INCLUDE: "./Contents/chapter7.org"
+#+INCLUDE: "./Contents/chapter8.org"
+
+#+LATEX: % ============================================================
+#+LATEX: % APPENDICES
+#+LATEX: % ============================================================
+#+LATEX: \part*{Appendices}
+#+LATEX: \appendix
+
+#+INCLUDE: "./Contents/appendixA.org"
+#+INCLUDE: "./Contents/appendixB.org"
+
+#+LATEX: % ============================================================
+#+LATEX: % BACK MATTER
+#+LATEX: % ============================================================
+#+LATEX: \backmatter
+
+#+print_bibliography:
+
+** Bibliography guidance                                           :noexport:
+:GUIDANCE:
+Use one of these commands to insert a cite key at the cursor.
+
+C-c b inserts citations via citar. Your init.el must be configured for citar and friends.
+
+C-c C-x @ inserts citations via org-cite. Org-cite is built in.
+:END:
+
+** Indices, Author List, and Glossaries
+
+#+LATEX: \listofauthors
+#+LATEX: \printindex[main]
+#+LATEX: \printindex[authors]
+#+LATEX: \printindex[prompt]
+#+LATEX: \printglossary[type=main,title=Glossary]
